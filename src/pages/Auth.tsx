@@ -53,9 +53,11 @@ const handleSubmit = async (e: React.FormEvent) => {
   setIsLoading(true);
 
   try {
-    const endpoint = activeTab === "signup" 
-      ? "http://localhost:8000/api/auth/signup" 
-      : "http://localhost:8000/api/auth/login";
+    const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "https://neurocode-backend.onrender.com";
+    const endpoint = activeTab === "signup"
+      ? `${API_BASE_URL}/api/auth/signup`
+      : `${API_BASE_URL}/api/auth/login`;
+    
 
     const payload = activeTab === "signup"
       ? { username: formData.username, email: formData.email, password: formData.password }
